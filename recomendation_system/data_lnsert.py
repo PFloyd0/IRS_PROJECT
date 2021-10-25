@@ -92,8 +92,9 @@ connection = pymysql.connect(user="root",
 
 cur = connection.cursor()
 createCartSql = '''CREATE TABLE Cart
-               (UserID                 VARCHAR(100)   ,
-                BookID                VARCHAR(100) )'''
+               (Id                   int primary key not null auto_increment,
+               UserID                 VARCHAR(100)   ,
+                BookID                VARCHAR(100))'''
 cur.execute(createCartSql)
 connection.commit()
 cur.close()
@@ -141,7 +142,8 @@ path = '../data/ratings_csv.csv'
 Rating = pd.read_csv(path, sep=",", encoding="ISO-8859-1", error_bad_lines=False)
 
 createBookratingSql = '''CREATE TABLE Bookrating
-               (User_Id                INT ,
+               (Id                   int primary key not null auto_increment,
+               User_Id                INT ,
                 Name                INT,
                 Rating                INT);'''
 
