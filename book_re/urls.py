@@ -8,6 +8,8 @@ urlpatterns = [
     url(r'^$', login.start),
     url(r'^register$', register.register),
     url(r'^login$', login.my_login),
-    url(r'^(?P<nid>\w+).html$', views.go)
-
+    url(r'^(?P<nid>\w+).html$', views.go),
+    url(r'^detail(?P<nid>\d+)$', views.detail),
+    url(r'^rating(?P<nid>\d+)$', views.rating),
+    url(r'^search$', views.search),
 ]

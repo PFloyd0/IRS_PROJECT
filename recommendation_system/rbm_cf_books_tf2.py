@@ -163,5 +163,4 @@ def do_recommendation(mock_user_id, top_n=20):
     result = result.loc[:, ['Name_x', 'Id_x', 'RecommendationScore']]
     return result
 # train_model()
-# print(do_recommendation(4))
-# print(do_recommendation(4)['Id_x'])
+# print(do_recommendation(2)['Id_x'])
