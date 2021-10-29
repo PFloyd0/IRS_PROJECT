@@ -16,13 +16,11 @@ def my_login(request):
             login(request, user)
             User_cast = models.User_cast.objects.get(user=user)
             book_re = rbm_cf_books_tf2.do_recommendation(User_cast.cast_id)
-            book_name = book_re['Name_x']
-            print(book_name)
-            re = {}
-            for i in range(len(book_name)):
-                re["name%d"%i] = book_name.iloc[i]
+            re = []
+            for row in book_re.itertuples():
+                re.append({'name': getattr(row, 'Name_x'), 'id': getattr(row, 'Id_x')})
             print(re)
-            return render(request, 'index.html', re)
+            return render(request, 'index.html', {'book_list': re})
         else:
             message = '用户名或密码错误'
     return render(request, 'login.html', {'message': message})
