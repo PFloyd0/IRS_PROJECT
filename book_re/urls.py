@@ -12,4 +12,5 @@ urlpatterns = [
     url(r'^detail(?P<nid>\d+)$', views.detail),
     url(r'^rating(?P<nid>\d+)$', views.rating),
     url(r'^search$', views.search),
+    url(r'^my$', views.my)
 ]

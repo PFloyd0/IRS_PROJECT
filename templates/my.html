@@ -131,12 +131,6 @@
                                 <input type="submit" value="search"  style="float: left;width: 150px">
                                 </div>
                             </form>
-                                <div class="header-action-icon-2">
-                                    <a href="my">
-                                        <img class="svgInject" alt="Nest" src="../static/assets/imgs/theme/icons/icon-heart.svg">
-                                        <span class="pro-count blue">my</span>
-                                    </a>
-                                </div>
                     </div>
                 </div>
             </div>
@@ -293,7 +287,7 @@
         <section class="product-tabs section-padding position-relative wow fadeIn animated">
             <div class="container">
                 <div class="section-title style-2">
-                    <h3>Recommended Products</h3>
+                    <h3>My rating Products</h3>
                 </div>
                 <!--End nav-tabs-->
                 <div class="tab-content wow fadeIn animated" id="myTabContent">
@@ -323,6 +317,13 @@
                                             <a href="shop-grid-right.html">Book</a>
                                         </div>
                                         <h2><a href="detail{{ row.id }}">{{ row.name }}</a></h2>
+                                        <div class="product-rate-cover">
+                                            <div class="product-rate d-inline-block">
+                                                <div class="product-rating" style="width:90%">
+                                                </div>
+                                            </div>
+                                            <span class="font-small ml-5 text-muted"> ({{ row.rating }})</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

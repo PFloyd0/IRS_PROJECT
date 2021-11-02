@@ -1,4 +1,6 @@
 from django.shortcuts import render
+
+from recommendation_system import rbm_cf_books_tf2
 from .import models
 import tkinter.messagebox
 from django.db.models import Count
@@ -12,8 +14,14 @@ from django.urls import reverse
 def go(request,nid):
     message = {}
     page = nid +'.html'
-    message['hello'] = nid
-    return render(request, page, message)
+    user = request.user
+    User_cast = models.User_cast.objects.get(user=user)
+    book_re = rbm_cf_books_tf2.do_recommendation(User_cast.cast_id)
+    re = []
+    for row in book_re.itertuples():
+        re.append({'name': getattr(row, 'Name_x'), 'id': getattr(row, 'Id_x')})
+    print(re)
+    return render(request, page, {'book_list': re})
 
 
 def detail(request, nid):
@@ -37,3 +45,13 @@ def rating(request, nid):
 def search(request):
     book = models.Books.objects.filter(name__contains=request.POST['book_name'])
     return render(request, "index.html", {"book_list": book})
+
+
+def my(request):
+    user = request.user
+    User_cast = models.User_cast.objects.get(user=user)
+    li = models.Bookrating.objects.filter(user_id=User_cast.cast_id)[:20]
+    re = []
+    for i in li:
+        re.append({"rating": i.rating, "name": models.Books.objects.get(id=i.name).name, "id": i.name})
+    return render(request, "my.html", {"book_list": re})
