@@ -12,7 +12,7 @@ class BookSqlTools:
         print('正在连接====')
         try:
             connection = pymysql.connect(user="root",
-                                         password="19980420",
+                                         password="19990520",
                                          port=3306,
                                          host="127.0.0.1",  # 本地数据库  等同于localhost
                                          db="Book",
@@ -40,7 +40,7 @@ class BookSqlTools:
     def UpdateMysqlTable(self, data, sql_qingli, sql_insert):
         try:
             connection = pymysql.connect(user="root",
-                                         password="19980420",
+                                         password="19990520",
                                          port=3306,
                                          host="127.0.0.1",  # 本地数据库  等同于localhost
                                          db="Book",
@@ -71,7 +71,7 @@ class BookSqlTools:
 
 
 connection = pymysql.connect(user="root",
-                             password="19980420",
+                             password="19990520",
                              port=3306,
                              host="127.0.0.1",  # 本地数据库  等同于localhost
                              charset="utf8")
@@ -84,7 +84,7 @@ cur.close()
 # 创建购物车表
 
 connection = pymysql.connect(user="root",
-                             password="19980420",
+                             password="19990520",
                              port=3306,
                              db="Book",
                              host="127.0.0.1",
@@ -94,13 +94,15 @@ cur = connection.cursor()
 createCartSql = '''CREATE TABLE Cart
                (Id                   int primary key not null auto_increment,
                UserID                 VARCHAR(100)   ,
-                BookID                VARCHAR(100))'''
+                BookID                VARCHAR(100));'''
 cur.execute(createCartSql)
 connection.commit()
 cur.close()
 connection.close()
 
 BookInfoInsert = BookSqlTools()
+
+
 
 # --------------------------------------------------------------------------
 # 读取本地的book1-100k.csv文件  在数据库中建一个Books表   将book.csv内容插入到数据库中

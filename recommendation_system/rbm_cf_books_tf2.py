@@ -17,14 +17,14 @@ from sqlalchemy import create_engine
 #         frame = pd.DataFrame()
 #     return frame
 #
-# con = pymysql.connect(host='127.0.0.1', user='root', passwd='19980420', db='Book', port=3306)  # 连接
+# con = pymysql.connect(host='127.0.0.1', user='root', passwd='19990520', db='Book', port=3306)  # 连接
 # cur = con.cursor()
 # select_rating_sql = '''Select * from Bookrating'''
 # ratings_df = read_table(cur, select_rating_sql)
 # con.commit()
 # cur.close()
 def load_data():
-    engine = create_engine("mysql://root:19980420@127.0.0.1/Book", pool_size=5,echo_pool=True)
+    engine = create_engine("mysql://root:19990520@127.0.0.1/Book", pool_size=5,echo_pool=True)
 
     conn = engine.connect()
 
