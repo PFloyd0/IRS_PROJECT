@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'book',
         'USER': 'root',
-        'PASSWORD': '19980420',
+        'PASSWORD': '19990520',
         'HOST': 'localhost',
         'PORT': '3306',
     }
@@ -133,6 +133,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+TEMPLATES_DIRS = os.path.join(BASE_DIR, 'templates')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\', '/')
 #设置静态文件路径为主目录下的media文件夹
