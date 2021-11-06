@@ -24,7 +24,7 @@ from sqlalchemy import create_engine
 # con.commit()
 # cur.close()
 def load_data():
-    engine = create_engine("mysql://root:19990520@127.0.0.1/Book", pool_size=5,echo_pool=True)
+    engine = create_engine("mysql://root:19980420@127.0.0.1/Book", pool_size=5,echo_pool=True)
 
     conn = engine.connect()
 
@@ -166,6 +166,6 @@ def do_recommendation(mock_user_id, top_n=20):
     result = result.loc[:, ['Name_x', 'Id_x', 'RecommendationScore']]
     return result
 # train_model()
-a = do_recommendation(2)['Id_x']
-
-print(a.values)
+# a = do_recommendation(2)['Id_x']
+#
+# print(a.values)
