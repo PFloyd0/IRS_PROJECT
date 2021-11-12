@@ -13,5 +13,6 @@ urlpatterns = [
     url(r'^rating(?P<nid>\d+)$', views.rating),
     url(r'^search$', views.search),
     url(r'^my$', views.my),
-    url(r'^wishlist$', views.wishlist)
+    url(r'^wishlist$', views.wishlist),
+    url(r'^chat$', views.chat)
 ]

@@ -1,0 +1,12 @@
+group name:
+RecomBook 
+
+
+team member:
+LI CHANGWEI (A0231379B)
+ZHAO YUCHEN (A0231417N)
+FENGYUYUAN (A0231302A)
+
+
+github:
+https://github.com/PFloyd0/IRS_PROJECT

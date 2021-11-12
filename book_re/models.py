@@ -57,3 +57,11 @@ class Cart(models.Model):
 class User_cast(models.Model):
     cast_id = models.AutoField(db_column='Id', primary_key=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+
+class Chat_record(models.Model):
+    id = models.AutoField(primary_key=True)
+    user = models.IntegerField(blank=True, null=True)
+    question = models.CharField(max_length=200, blank=True, null=True)
+    answer = models.CharField(max_length=200, blank=True, null=True)
+
