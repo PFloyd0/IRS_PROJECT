@@ -29,10 +29,10 @@ def load_data():
     conn = engine.connect()
 
     ratings_df = pd.read_sql_table("bookrating", conn)
-    ratings_df = ratings_df.drop_duplicates(subset=['User_Id', 'Name', 'Rating'], keep='first')
+    # ratings_df = ratings_df.drop_duplicates(subset=['User_Id', 'Name', 'Rating'], keep='first')
     books_df = pd.read_sql_table("books", conn)
     books_df = books_df.loc[:, ['Name', 'Id']]
-    books_df = books_df.drop_duplicates(subset='Name', keep='last')
+    # books_df = books_df.drop_duplicates(subset='Name', keep='last')
 
     user_rating_df = ratings_df.pivot_table(index='User_Id', columns='Name', values='Rating')
     return books_df, ratings_df, user_rating_df
@@ -152,9 +152,11 @@ def do_recommendation(mock_user_id, top_n=20):
     # Feeding in the user and reconstructing the input
     feed = tf.nn.sigmoid(tf.matmul(inputUser, prv_w) + prv_hb)
     rec = tf.nn.sigmoid(tf.matmul(feed, tf.transpose(prv_w)) + prv_vb)
+    print(rec.shape)
 
 
     scored_books_df_mock = books_df[books_df['Id'].isin(user_rating_df.columns)]
+    print(scored_books_df_mock)
     scored_books_df_mock = scored_books_df_mock.assign(RecommendationScore=rec[0].numpy())
 
     books_df_mock = ratings_df[ratings_df['User_Id'] == mock_user_id]
@@ -166,6 +168,6 @@ def do_recommendation(mock_user_id, top_n=20):
     result = result.loc[:, ['Name_x', 'Id_x', 'RecommendationScore']]
     return result
 # train_model()
-# a = do_recommendation(2)['Id_x']
-#
+# a = do_recommendation(1)['Id_x']
+# #
 # print(a.values)

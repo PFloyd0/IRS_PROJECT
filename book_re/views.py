@@ -12,18 +12,22 @@ from SentimentParser import main
 # Create your views here.
 
 
-def go(request,nid):
+def go(request, nid):
     message = {}
     page = nid +'.html'
-    user = request.user
-    User_cast = models.User_cast.objects.get(user=user)
-    book_re = hybird.do_recommendation(User_cast.cast_id)
     re = []
-    for row in book_re.itertuples():
-        re.append({'name': getattr(row, 'Name_x'), 'id': getattr(row, 'Id_x')})
-    print(re)
-    a = models.Chat_record.objects.filter(user=User_cast.cast_id)
-    a.delete()
+    try:
+        user = request.user
+        User_cast = models.User_cast.objects.get(user=user)
+        book_re = hybird.do_recommendation(User_cast.cast_id)
+        re = []
+        for row in book_re.itertuples():
+            re.append({'name': getattr(row, 'Name_x'), 'id': getattr(row, 'Id_x')})
+        print(re)
+        a = models.Chat_record.objects.filter(user=User_cast.cast_id)
+        a.delete()
+    except:
+        pass
     return render(request, page, {'book_list': re})
 
 
@@ -38,9 +42,14 @@ def rating(request, nid):
         book_rating = models.Bookrating.objects.get(user_id=cast_id, name=nid)
         book_rating.rating = request.POST['rating']
         book_rating.save()
-    except:
+        print("try*****************************")
+        print(cast_id, nid, request.POST['rating'])
+    except Exception as err:
+        print(err)
         book_rating = models.Bookrating.objects.create(user_id=cast_id, name=nid, rating=request.POST['rating'])
         book_rating.save()
+        print("except*****************************")
+        print(cast_id, nid, request.POST['rating'])
     book = models.Books.objects.get(id=nid)
     return render(request, "detail.html", {"book": book})
 

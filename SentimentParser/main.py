@@ -75,7 +75,7 @@ def recomMatch(text):
     return target
 
 
-def doSearch(text, namelist, user_id):
+def doSearch(text,  user_id):
     try:
         re = models.Books.objects.filter(name__contains=text)
         print("this is a book name. just return this book")
@@ -131,8 +131,8 @@ def doSearch(text, namelist, user_id):
 
 
 def do_chat(Input, user_id):
-    df = pd.read_csv('data/book100k-200k.csv')
-    namelist = df['Name']
+    # df = pd.read_csv('data/book100k-200k.csv')
+    # namelist = df['Name']
 
-    return doSearch(Input, namelist, user_id)
+    return doSearch(Input, user_id)
 print(do_chat("a String", 1))

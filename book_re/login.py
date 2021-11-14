@@ -14,6 +14,8 @@ def my_login(request):
         if user:
             login(request, user)
             User_cast = models.User_cast.objects.get(user=user)
+            print("*********************************")
+            print(User_cast.cast_id)
             book_re = hybird.do_recommendation(User_cast.cast_id)
             re = []
             for row in book_re.itertuples():

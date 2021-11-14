@@ -17,5 +17,5 @@ def register(request):
             return render(request, 'login.html', info)
         else:
             info['lala'] = '两次密码不同或未输入密码'
-    return render(request, "register.html", info)
+    return render(request, "login.html", info)
 

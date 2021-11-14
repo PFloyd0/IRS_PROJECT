@@ -12,7 +12,7 @@ class BookSqlTools:
         print('正在连接====')
         try:
             connection = pymysql.connect(user="root",
-                                         password="19990520",
+                                         password="19980420",
                                          port=3306,
                                          host="127.0.0.1",  # 本地数据库  等同于localhost
                                          db="Book",
@@ -40,7 +40,7 @@ class BookSqlTools:
     def UpdateMysqlTable(self, data, sql_qingli, sql_insert):
         try:
             connection = pymysql.connect(user="root",
-                                         password="19990520",
+                                         password="19980420",
                                          port=3306,
                                          host="127.0.0.1",  # 本地数据库  等同于localhost
                                          db="Book",
@@ -71,7 +71,7 @@ class BookSqlTools:
 
 
 connection = pymysql.connect(user="root",
-                             password="19990520",
+                             password="19980420",
                              port=3306,
                              host="127.0.0.1",  # 本地数据库  等同于localhost
                              charset="utf8")
@@ -84,7 +84,7 @@ cur.close()
 # 创建购物车表
 
 connection = pymysql.connect(user="root",
-                             password="19990520",
+                             password="19980420",
                              port=3306,
                              db="Book",
                              host="127.0.0.1",
@@ -108,7 +108,7 @@ BookInfoInsert = BookSqlTools()
 # 读取本地的book1-100k.csv文件  在数据库中建一个Books表   将book.csv内容插入到数据库中
 # --------------------------------------------------------------------------
 
-path = '../data/book1-100k.csv'
+path = '../data/book1-100k_new.csv'
 Book = pd.read_csv(path, sep=",", encoding="ISO-8859-1", error_bad_lines=False)
 
 createBooksSql = ''' CREATE TABLE Books
@@ -140,7 +140,7 @@ del Book
 # 读取本地的ratings_csv文件  在数据库中建一个Bookrating表   将bookrating.csv内容插入到数据库中
 # --------------------------------------------------------------------------
 
-path = '../data/ratings_csv.csv'
+path = '../data/ratings_csv_new.csv'
 Rating = pd.read_csv(path, sep=",", encoding="ISO-8859-1", error_bad_lines=False)
 
 createBookratingSql = '''CREATE TABLE Bookrating
